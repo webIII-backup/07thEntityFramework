@@ -25,6 +25,8 @@ namespace BeerhallEF.Models
 
         public int NrOfBeers => Beers.Count;
 
+        public Location Location { get; set; }
+
         #endregion
 
         #region Constructors

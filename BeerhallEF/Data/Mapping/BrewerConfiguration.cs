@@ -34,6 +34,11 @@ namespace BeerhallEF.Data.Mapping
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasOne(t => t.Location)
+              .WithMany()
+             .IsRequired(false)
+             .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
