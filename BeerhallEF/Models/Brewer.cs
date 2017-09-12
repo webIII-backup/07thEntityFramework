@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BeerhallEF.Models
 {
@@ -20,7 +21,18 @@ namespace BeerhallEF.Models
 
         public string Street { get; set; }
 
-     #endregion      
+        public ICollection<Beer> Beers { get; private set; }
+
+        public int NrOfBeers => Beers.Count;
+
+        #endregion
+
+        #region Constructors
+        protected Brewer()
+        {
+            Beers = new HashSet<Beer>();
+        }
+        #endregion
 
     }
 }

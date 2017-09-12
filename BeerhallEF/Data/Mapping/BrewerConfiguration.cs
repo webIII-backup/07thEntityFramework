@@ -26,7 +26,13 @@ namespace BeerhallEF.Data.Mapping
                 .HasMaxLength(100);
 
             builder.Property(t => t.BrewerId)
-                .ValueGeneratedOnAdd();        
+                .ValueGeneratedOnAdd();
+
+            //Mapping Associations
+            builder.HasMany(t => t.Beers)
+                .WithOne()
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

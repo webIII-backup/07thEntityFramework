@@ -17,9 +17,11 @@ namespace BeerhallEF.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new BrewerConfiguration());   
+            modelBuilder.ApplyConfiguration(new BrewerConfiguration());
+            modelBuilder.ApplyConfiguration(new BeerConfiguration());          
         }
 
         public DbSet<Brewer> Brewers { get; set; }
+        //public DbSet<Beer> Beers { get; set; }  type discovery
     }
 }
