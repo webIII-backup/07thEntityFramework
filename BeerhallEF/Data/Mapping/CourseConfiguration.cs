@@ -12,6 +12,11 @@ namespace BeerhallEF.Data.Mapping
 
             //Properties
             builder.Property(t => t.Title).HasMaxLength(100).IsRequired();
+
+            //Inheritance : TPH, and renaming the discriminator
+            builder.HasDiscriminator<string>("Type")
+                .HasValue<OnlineCourse>("Online")
+               .HasValue<OnsiteCourse>("Onsite");
         }
 
      

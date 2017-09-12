@@ -23,6 +23,8 @@ namespace BeerhallEF.Data
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryBrewerConfiguration());
+            modelBuilder.ApplyConfiguration(new OnlineCourseConfiguration());
+            modelBuilder.ApplyConfiguration(new OnsiteCourseConfiguration());
         }
 
         public DbSet<Brewer> Brewers { get; set; }
