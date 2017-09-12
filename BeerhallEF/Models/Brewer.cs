@@ -27,12 +27,15 @@ namespace BeerhallEF.Models
 
         public Location Location { get; set; }
 
+        public ICollection<Course> Courses { get; private set; }
+
         #endregion
 
         #region Constructors
         protected Brewer()
         {
             Beers = new HashSet<Beer>();
+            Courses = new List<Course>();
         }
         #endregion
 

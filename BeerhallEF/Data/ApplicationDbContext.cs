@@ -20,10 +20,12 @@ namespace BeerhallEF.Data
             modelBuilder.ApplyConfiguration(new BrewerConfiguration());
             modelBuilder.ApplyConfiguration(new BeerConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
         }
 
         public DbSet<Brewer> Brewers { get; set; }
         //public DbSet<Beer> Beers { get; set; }  type discovery
         public DbSet<Location> Location { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }
