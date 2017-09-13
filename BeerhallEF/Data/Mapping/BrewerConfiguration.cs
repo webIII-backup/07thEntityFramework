@@ -37,6 +37,7 @@ namespace BeerhallEF.Data.Mapping
             builder.HasOne(t => t.Location)
               .WithMany()
              .IsRequired(false)
+             .HasForeignKey("PostalCode")
              .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(t => t.Courses)

@@ -2,10 +2,12 @@
 using BeerhallEF.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace BeerhallEF.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            var connectionstring =
@@ -28,8 +30,8 @@ namespace BeerhallEF.Data
         }
 
         public DbSet<Brewer> Brewers { get; set; }
-        //public DbSet<Beer> Beers { get; set; }  type discovery
-        public DbSet<Location> Location { get; set; }
+        public DbSet<Beer> Beers { get; set; }  
+        public DbSet<Location> Locations { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
     }

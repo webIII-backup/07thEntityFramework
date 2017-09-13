@@ -10,8 +10,6 @@ namespace BeerhallEF.Data.Mapping
         {
             //Properties
             builder.Property(t => t.Url).HasMaxLength(100);
-        }
-
-     
+        }     
     }
 }
