@@ -10,7 +10,7 @@ namespace BeerhallEF.Data.Mapping
         {
             //Properties
             builder.Property(t => t.StartDate)
-                .HasAnnotation("BackingField", "_startDate");
+                .HasField("_startDate");
         }
 
      
