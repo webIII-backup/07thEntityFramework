@@ -43,39 +43,41 @@ namespace BeerhallEF
             /*----------------------Basic Query------------------------------*/
 
             Console.WriteLine("\n---Loading all brewers, ordered by name---");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             PrintBrewers();
-
+      
             Console.WriteLine("\n---Loading the brewer with id 1---");
             //SingleOrDefault, Single, FirstOrDefault, First (zie tips)
             _brewer = null;
             if (_brewer != null)
                 Console.WriteLine($"Brewer with id 1: {_brewer.Name}");
+       
 
             Console.WriteLine("\n---Filtering the brewers:  brewers whose name starts with b---");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             PrintBrewers();
+    
 
             Console.WriteLine("\n---Filtering the brewers:  brewers from Leuven--");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             PrintBrewers();
 
             Console.WriteLine("\n---Filtering the brewers: brewers with more than 4 beers, ordered by name---");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             PrintBrewers();
 
             Console.WriteLine("\n----Filtering the brewers: brewers with a beer starting with the letter B. ---");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             PrintBrewers();
 
 
             /*----------------------Loading related data------------------------------*/
             Console.WriteLine("\n---All beers from brewer with id 1---");
             _brewer = null;
-            PrintBeers(_brewer.Beers);
+            if (_brewer!=null) PrintBeers(_brewer.Beers);
 
             Console.WriteLine("\n---All brewers from Leuven, print the name and the number of beers---");
-            _brewers = null;
+            _brewers = new List<Brewer>();
             foreach (Brewer br in _brewers)
                 Console.WriteLine(br.Name + " " + br.Beers.Count);
 
@@ -89,7 +91,7 @@ namespace BeerhallEF
                 Console.WriteLine(br.Name + " " + br.NumberOfBeers);
 
             Console.WriteLine("\n---Loading multiple relationships: all brewers, print name, location and number of beers--");
-            _brewers = null;
+            _brewers = new List<Brewer>(); ;
             foreach (Brewer br in _brewers)
                 Console.WriteLine(
                     $"{br.Name,-20} {(br.Location != null ? br.Location.Name : ""),20} {br.Beers.Count,20:N0}");
@@ -126,7 +128,7 @@ namespace BeerhallEF
 
             /*----------------------Client versus server evaluation------------------------------*/
             Console.WriteLine("\n---All brewers with NrOfBeers > 4--");
-            _brewers = null;
+            _brewers = new List<Brewer>(); 
             _brewers.ToList().ForEach(b => Console.WriteLine($"{b.Name}: {b.NrOfBeers}"));
 
             Console.WriteLine("\n---Overerving--");
@@ -158,7 +160,7 @@ namespace BeerhallEF
 
             Console.WriteLine("\n---Delete : remove Gentse Gruut---");
             Console.WriteLine("Number of brewers before delete: " + context.Brewers.Count());
-            gruut = context.Brewers.First(b => b.Name == "Gentse Gruut");
+            gruut = context.Brewers.FirstOrDefault(b => b.Name == "Gentse Gruut");
             Console.WriteLine("Number of brewers after delete: " + context.Brewers.Count());
 
             Console.WriteLine("\n---Transactions, multiple operations in 1 save, change the turnover of the first to brewers---");
@@ -173,18 +175,20 @@ namespace BeerhallEF
 
             Console.WriteLine("\n---Removing relationships: Remove the first Beer from Bavik - Delete --");
             _brewer = context.Brewers.Single(b => b.Name == "Bavik");
-            Beer beer = _brewer.Beers.First();
+            Beer beer = _brewer.Beers.FirstOrDefault();
 
         }
 
         private static void PrintBrewers()
         {
+            if (_brewers!=null)
             _brewers.ToList().ForEach(b => Console.WriteLine($"{b.Name}"));
         }
 
         private static void PrintBeers(IEnumerable<Beer> beers)
         {
-            beers.ToList().ForEach(b => Console.WriteLine($"{b.Name:-20}  {b.Price}"));
+            if (beers!=null)
+                beers.ToList().ForEach(b => Console.WriteLine($"{b.Name:-20}  {b.Price}"));
         }
     }
 }
